@@ -1,13 +1,17 @@
 package com.polytech.cinema.Entity;
 
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Entity
-public class Film {
+@Table(name = "film", schema = "cinema")
+public class Film implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,14 +35,16 @@ public class Film {
     private int budget;
 
     @Basic
-    @Column(name = "montant_recette\t", nullable = false)
+    @Column(name = "montant_recette", nullable = false)
     private int montantRecette;
 
-    @Basic
-    @Column(name = "realisateur_id", nullable = false)
-    private int realisateurId;
+    @ManyToOne
+    @JoinColumn(name="realisateur_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Realisateur realisateur;
 
-    @Basic
-    @Column(name = "categorie_id", nullable = false)
-    private String categorieId;
+    @ManyToOne
+    @JoinColumn(name="categorie_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Categorie categorie;
 }
