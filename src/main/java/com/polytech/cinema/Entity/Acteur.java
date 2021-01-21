@@ -1,10 +1,12 @@
 package com.polytech.cinema.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -31,4 +33,9 @@ public class Acteur implements Serializable{
     @Basic
     @Column(name = "date_deces", nullable = false)
     private Date dateDeces;
+
+    @JsonIgnoreProperties("acteur")
+    @OneToMany
+    @JoinColumn(name = "acteur_id", referencedColumnName = "id", insertable = false, updatable = false)
+    public List<Personnage> personnages;
 }

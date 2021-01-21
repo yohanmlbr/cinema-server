@@ -1,8 +1,7 @@
 package com.polytech.cinema.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,13 +20,22 @@ public class Personnage implements Serializable {
     @Column(name = "nom", nullable = false, length = 30)
     private String nom;
 
+
+//    @Basic
+//    @Column(name = "acteur_id", nullable = false)
+//    private int acteurId;
+//
+//    @Basic
+//    @Column(name = "film_id", nullable = false)
+//    private int filmId;
+
+    @JsonIgnoreProperties("personnages")
     @ManyToOne
-    @JoinColumn(name="acteur_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name="acteur_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Acteur acteur;
 
+    @JsonIgnoreProperties("personnages")
     @ManyToOne
-    @JoinColumn(name="film_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name="film_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Film film;
 }

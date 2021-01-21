@@ -1,12 +1,14 @@
 package com.polytech.cinema.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -38,13 +40,26 @@ public class Film implements Serializable{
     @Column(name = "montant_recette", nullable = false)
     private int montantRecette;
 
+//    @Basic
+//    @Column(name = "realisateur_id", nullable = false)
+//    private int realisateurId;
+//
+//    @Basic
+//    @Column(name = "categorie_id", nullable = false, length = 30)
+//    private String categorieId;
+
+    @JsonIgnoreProperties({"films"})
     @ManyToOne
-    @JoinColumn(name="realisateur_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name="realisateur_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Realisateur realisateur;
 
+    @JsonIgnoreProperties({"films"})
     @ManyToOne
-    @JoinColumn(name="categorie_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name="categorie_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Categorie categorie;
+
+    @JsonIgnoreProperties({"films","acteur","acteurId","film","filmId"})
+    @OneToMany
+    @JoinColumn(name = "film_id", referencedColumnName = "id", insertable = false, updatable = false)
+    public List<Personnage> personnages;
 }

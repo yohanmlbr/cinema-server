@@ -1,9 +1,13 @@
 package com.polytech.cinema.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,4 +26,10 @@ public class Realisateur implements Serializable {
     @Basic
     @Column(name = "prenom", nullable = false, length = 20)
     private String prenom;
+
+    @JsonIgnoreProperties("realisateur")
+    @OneToMany
+    @JoinColumn(name = "realisateur_id", referencedColumnName = "id", updatable = false, insertable = false)
+    public List<Film> films;
+
 }
