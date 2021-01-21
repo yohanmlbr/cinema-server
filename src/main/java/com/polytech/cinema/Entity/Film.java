@@ -58,7 +58,7 @@ public class Film implements Serializable{
     @JoinColumn(name="categorie_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Categorie categorie;
 
-    @JsonIgnoreProperties({"films","acteur","acteurId","film","filmId"})
+    @JsonIgnoreProperties({"films","acteurId","film","filmId"})
     @OneToMany
     @JoinColumn(name = "film_id", referencedColumnName = "id", insertable = false, updatable = false)
     public List<Personnage> personnages;
