@@ -43,4 +43,16 @@ public class FilmService {
     public Film updateFilm(Film f){
         return fr.save(f);
     }
+
+    public List<Film> getFilmsBySearchOnRealisateurAndOrCategorie(int realisateur, String categorie){
+        if(realisateur==0 && !categorie.equals("")){
+            return fr.getByCategorieId(categorie);
+        }
+        else if(realisateur!=0 && categorie.equals("")){
+            return fr.getByRealisateurId(realisateur);
+        }
+        else{
+            return fr.getByRealisateurIdAndCategorieId(realisateur,categorie);
+        }
+    }
 }

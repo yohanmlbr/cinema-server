@@ -43,4 +43,10 @@ public class FilmController {
     public Film updateFilm(@RequestBody Film f){
         return fs.updateFilm(f);
     }
+
+    @GetMapping("/search")
+    public List<Film> getFilmsBySearchOnRealisateurAndOrCategorie(@RequestParam(defaultValue = "0") int realisateur,@RequestParam(defaultValue = "") String categorie){
+        return fs.getFilmsBySearchOnRealisateurAndOrCategorie(realisateur,categorie);
+    }
+
 }
