@@ -40,25 +40,25 @@ public class Film implements Serializable{
     @Column(name = "montant_recette", nullable = false)
     private int montantRecette;
 
-//    @Basic
-//    @Column(name = "realisateur_id", nullable = false)
-//    private int realisateurId;
-//
-//    @Basic
-//    @Column(name = "categorie_id", nullable = false, length = 30)
-//    private String categorieId;
+    @Basic
+    @Column(name = "realisateur_id", nullable = false)
+    private int realisateurId;
 
-    @JsonIgnoreProperties({"films"})
+    @Basic
+    @Column(name = "categorie_id", nullable = false, length = 2)
+    private String categorieId;
+
+    @JsonIgnoreProperties("films")
     @ManyToOne
     @JoinColumn(name="realisateur_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Realisateur realisateur;
 
-    @JsonIgnoreProperties({"films"})
+    @JsonIgnoreProperties("films")
     @ManyToOne
     @JoinColumn(name="categorie_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Categorie categorie;
 
-    @JsonIgnoreProperties({"films","acteurId","film","filmId"})
+    @JsonIgnoreProperties({"film","filmId"})
     @OneToMany
     @JoinColumn(name = "film_id", referencedColumnName = "id", insertable = false, updatable = false)
     public List<Personnage> personnages;

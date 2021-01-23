@@ -1,5 +1,6 @@
 package com.polytech.cinema.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -20,14 +21,13 @@ public class Personnage implements Serializable {
     @Column(name = "nom", nullable = false, length = 30)
     private String nom;
 
+    @Basic
+    @Column(name = "acteur_id", nullable = false)
+    private int acteurId;
 
-//    @Basic
-//    @Column(name = "acteur_id", nullable = false)
-//    private int acteurId;
-//
-//    @Basic
-//    @Column(name = "film_id", nullable = false)
-//    private int filmId;
+    @Basic
+    @Column(name = "film_id", nullable = false)
+    private int filmId;
 
     @JsonIgnoreProperties("personnages")
     @ManyToOne

@@ -25,22 +25,22 @@ public class CategorieController {
     }
 
     @GetMapping("/{id}")
-    public Categorie getFilmById(@PathVariable String id){
+    public Categorie getCategorieById(@PathVariable String id){
         return cs.getCategorieById(id);
     }
 
     @PostMapping("/add")
-    public Categorie addFilm(@RequestBody Categorie c){
+    public Categorie addCategorie(@RequestBody Categorie c){
         return cs.addCategorie(c);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteFilm(@PathVariable String id){
+    public void deleteCategorie(@PathVariable String id){
         cs.deleteCategorie(id);
     }
 
     @PutMapping("/update")
-    public Categorie updateFilm(@RequestBody Categorie c){
+    public Categorie updateCategorie(@RequestBody Categorie c){
         return cs.updateCategorie(c);
     }
 }

@@ -31,7 +31,7 @@ public class Acteur implements Serializable{
     private Date dateNaissance;
 
     @Basic
-    @Column(name = "date_deces", nullable = false)
+    @Column(name = "date_deces")
     private Date dateDeces;
 
     @JsonIgnoreProperties("acteur")

@@ -25,22 +25,22 @@ public class PersonnageController {
     }
 
     @GetMapping("/{id}")
-    public Personnage getFilmById(@PathVariable int id){
+    public Personnage getPersonnageById(@PathVariable int id){
         return ps.getPersonnageByIds(id);
     }
 
     @PostMapping("/add")
-    public Personnage addFilm(@RequestBody Personnage f){
+    public Personnage addPersonnage(@RequestBody Personnage f){
         return ps.addPersonnage(f);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteFilm(@PathVariable int id){
+    public void deletePersonnage(@PathVariable int id){
         ps.deletePersonnage(id);
     }
 
     @PutMapping("/update")
-    public Personnage updateFilm(@RequestBody Personnage f){
+    public Personnage updatePersonnage(@RequestBody Personnage f){
         return ps.updatePersonnage(f);
     }
 }

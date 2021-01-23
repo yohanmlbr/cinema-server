@@ -27,7 +27,7 @@ public class Realisateur implements Serializable {
     @Column(name = "prenom", nullable = false, length = 20)
     private String prenom;
 
-    @JsonIgnoreProperties("realisateur")
+    @JsonIgnoreProperties({"realisateur","realisateurId"})
     @OneToMany
     @JoinColumn(name = "realisateur_id", referencedColumnName = "id", updatable = false, insertable = false)
     public List<Film> films;
