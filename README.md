@@ -29,3 +29,13 @@ Pour l'objet film il existe une route en plus pour répondre aux demandes du suj
 * /film/search?realisateur={idRea}&categorie={idCat}
 
 Cela marche avec un seul des paramètres ou les 2 ensembles.
+
+Coté base de données, l'objet personnage à été modifié pour permettre à un acteur de posséder plusieurs roles dans un même film(ce qui arrive de temps en temps).
+Un script sql est donc à disposition à la racine du projet pour avoir une base de données compatible avec le serveur.
+
+Enfin le fichier application.properties permet de modifier l'accès à la base de données ainsi que les identifiants à celle-ci (username,password,url).
+Il faudra donc surement les modifier pour faire marcher la connection à la DB.
+
+Liens Git des 2 parties du projet Web Services :
+* Serveur : https://github.com/yohanmlbr/cinema-server
+* Client : https://github.com/AlexisJamal/cinemaEpul
